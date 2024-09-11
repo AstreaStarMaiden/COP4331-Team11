@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>COP4331 Group 11 - Contacts Repository</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="js/code.js"></script>
+    <link href="css/styles.css" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() 
+        {
+            readCookie();
+        }, false);
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Welcome To Your Contact Repository</h1>
+        <span id="userName"></span><br />
+        <button type="button" id="logoutButton" class="buttons_logout" onclick="doLogout();"> Log Out </button>
+    </header>
+
+    <div id="accessUIDiv">
+        <br />
+
+<!-------------search contacts section-------->
+        <span id="inner-title">Search Contacts:</span><br />
+        <div class="container">
+            <div class="column left">
+                Search:
+            </div>
+            <div class="column right">
+                <input type="text" id="searchText" placeholder="Contact To Search For"/>
+            </div>
+        </div>
+        <button type="button" id="searchContactButton" class="buttons" onclick="searchContacts();"> Search Contacts </button><br />
+        <span id="contactSearchResult"></span>
+        <p id="contactList">
+        </p><br /><br />
+
+
+<!------------Add to contacts section--------->
+        <span id="inner-title">Add to Contacts:</span><br />
+        <div class="container">
+            <div class="column left">
+                Name:<br />
+                Phone:<br />
+                Email:<br />
+            </div>
+            <div class="column right">
+                <input type="text" id="contactName" placeholder="Contacts Name"><br />
+                <input type="text" id="phone" placeholder="Contacts Phone"><br />
+                <input type="text" id="email" placeholder="Contacts email"><br />
+            </div>
+        </div>
+        <br /><button type="button" id="addContactButton" class="buttons" onclick="addContact();"> Add Contact </button><br />
+        <span id="contactAddResult"></span>
+    </div>
+
+    
+</body>
+</html>
