@@ -21,7 +21,7 @@
 		
 		if ($count != 0) 
 		{
-     		$stmt->close();
+     	$stmt->close();
 			$conn->close();
 			returnWithError("Username already taken");
 		} 
@@ -35,7 +35,7 @@
 
 			$stmt->close();
 			$conn->close();
-			returnWithSuccess("User successfully registered, please Log in");
+			returnWithSuccess("User successfully registered, please log in");
 		}
 	}
 	
