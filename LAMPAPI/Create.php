@@ -2,8 +2,8 @@
 	$inData = getRequestInfo();
 	
 	$name = $inData["name"];
-    $phone = $inData["phone"];
-    $email = $inData["email"];
+  $phone = $inData["phone"];
+  $email = $inData["email"];
 	$userId = $inData["userId"];
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
@@ -11,6 +11,21 @@
 	{
 		returnWithError( $conn->connect_error );
 	} 
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL))
+    {
+        $emailErr = "Invalid email format";
+        returnWithError($emailErr);
+    }
+    elseif (!preg_match("/^[a-zA-Z-' ]+$/",$name)) 
+    {
+        $nameErr = "Invalid name";
+        returnWithError($nameErr);
+    }
+    elseif(!preg_match('/^[0-9]{10}+$/', $phone)) 
+    {
+        $phoneErr = "Invalid phone number";
+        returnWithError($phoneErr);
+    }
 	else
 	{
 		$stmt = $conn->prepare("INSERT into Contacts (UserId,Name,Phone,Email) VALUES(?,?,?,?)");

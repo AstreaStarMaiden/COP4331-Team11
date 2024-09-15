@@ -11,6 +11,16 @@
 	{
 		returnWithError($conn->connect_error);
 	} 
+    elseif (!preg_match("/^[a-zA-Z-' ]*$/",$firstName)) 
+    {
+        $firstNameErr = "Invalid first name";
+        returnWithError($firstNameErr);
+    }
+    elseif (!preg_match("/^[a-zA-Z-' ]*$/",$lastName)) 
+    {
+        $lastNameErr = "Invalid last name";
+        returnWithError($lastNameErr);
+    }
 	else
 	{
 		$stmt = $conn->prepare("SELECT count(*) FROM Users WHERE Login = ?");

@@ -10,8 +10,8 @@
 	else
 	{
 		// $name = $inData["Name"];
-		$stmt = $conn->prepare("DELETE FROM Contacts WHERE Name =? AND UserID =? AND Phone =? AND Email =?");
-		$stmt->bind_param("ssss", $inData["Name"], $inData["UserId"], $inData["Phone"], $inData["Email"]);
+		$stmt = $conn->prepare("DELETE FROM Contacts WHERE ID =?");
+		$stmt->bind_param("s", $inData["id"]);
 		$stmt->execute();
 
 
