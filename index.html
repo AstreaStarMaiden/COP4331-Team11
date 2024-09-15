@@ -11,29 +11,53 @@
 </head>
 <body>
     <header>
-        <h1>COP4331 Group 11</h1>
+        <h1>Contact Manager</h1>
     </header>
 
-    <div class="container">
+    <div class="container_index">
+        <div class="side_index"></div>
 <!---------------Login------------->
         <div class="column login">
-            <span id="inner-title">PLEASE LOG IN</span><br />
+            <span id="inner-title">LOG IN</span><br /><br />
                 User name: <input type="text" id="loginName" placeholder="Username" /><br />
-                Password:  <input type="password" id="loginPassword" placeholder="Password"/><br />
-            <button type="button" id="loginButton" class="buttons_index" onclick="doLogin();"> Login </button><br />
+                &nbsp;Password:  <input type="password" id="loginPassword" placeholder="Password"/><br /><br />
+            <button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Login </button><br />
             <span id="loginResult"></span>
         </div>
+        <div class="side_index"></div>
 <!-----------------Signup---------->
         <div class="column signUp">
             <span id="inner-title">Sign Up</span><br />
-            First Name: &nbsp;<input type="text" id="firstName" placeholder="firstname" /><br />
-            Last Name:  &nbsp;<input type="text" id="lastName" placeholder="lastname" /><br />
-            User Name:  <input type="text" id="userName" placeholder="userName" /><br />
-            Password:  &nbsp;&nbsp;<input type="password" id="password" placeholder="password"/><br />
-            <button type="button" id="SignUpButton" class="buttons_index" onclick="doSignUp();"> Sign Up </button><br />
+            <form id="form">
+            &nbsp;First Name: <input required type="text" id="firstName" placeholder="First name" /><br />
+            &nbsp;Last Name:  <input required type="text" id="lastName" placeholder="Last name" /><br />
+            User Name:  <input required type="text" id="userName" placeholder="Username" /><br />
+            &nbsp;&nbsp;Password:  <input required type="password" id="password" placeholder="Password"/><br /><br />
+            <button type="submit" id="SignUpButton" class="buttons" onclick="doSignUp();"> Sign Up </button><br />
+            </form>
             <span id="SignUpResult"></span>
-
+            <div id="explanation">
+        <h3>Password must contain the following:</h3>
+        <p id="passLen" class="invalid">
+          8 to 32 characters
+        </p>
+        <p id="passLett" class="invalid">
+          At least one letter
+        </p>
+        <p id="passNum" class="invalid">
+          At least one number
+        </p>
+        <p id="passSpec" class="invalid">
+          At least one special character
+        </p>
+      </div>
         </div>
+        <div class="side_index"></div>
     </div>
+
+<!-------------- Footer Section --------------->
+    <footer>
+        <p>2024 COP4331 Group 11</p>
+    </footer>
 </body>
 </html>
