@@ -83,7 +83,14 @@ function doSignUp()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
+        let jsonObject = JSON.parse(xhr.responseText); // Parse the JSON response
+			  if (jsonObject.error)
+				{
+					document.getElementById("SignUpResult").innerHTML = jsonObject.error;
+				}
+        else {
 		    document.getElementById("SignUpResult").innerHTML = "Registration succesful, Please Login";
+        }
 			}
 		};
 		xhr.send(jsonPayload);
@@ -96,7 +103,7 @@ function doSignUp()
 }
 
 function addContact() {
-    let name = document.getElementById("contactName").valuesetAttribute("required", "required");
+    let name = document.getElementById("contactName").value;
     let phone = document.getElementById("phone").value;
     let email = document.getElementById("email").value;
     document.getElementById("contactAddResult").innerHTML = "";
@@ -112,20 +119,16 @@ function addContact() {
     
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            try {
-                let jsonObject = JSON.parse(xhr.responseText); // Parse the JSON response
-                
-                if (jsonObject.error && jsonObject.error !== "") {
-                    document.getElementById("contactAddResult").innerHTML = jsonObject.error;
-                } else {
-                    document.getElementById('contactName').value = '';
-                    document.getElementById('phone').value = '';
-                    document.getElementById('email').value = '';
-                    document.getElementById("contactAddResult").innerHTML = "Contact has been added";
-                }
-            } catch (e) {
-                document.getElementById("contactAddResult").innerHTML = "Error parsing response: " + e.message;
-            }
+            let jsonObject = JSON.parse(xhr.responseText); // Parse the JSON response
+            document.getElementById("contactAddResult").innerHTML = "Here";
+            if (jsonObject.error && jsonObject.error !== "") {
+              document.getElementById("contactAddResult").innerHTML = jsonObject.error;
+            } else {
+              document.getElementById('contactName').value = '';
+              document.getElementById('phone').value = '';
+              document.getElementById('email').value = '';
+              document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+            }    
         }
     };
     
@@ -215,6 +218,8 @@ function searchContacts()
 				if (jsonObject.error && jsonObject.error !== "")
 				{
 					document.getElementById("contactSearchResult").innerHTML = jsonObject.error;
+          document.getElementById("searchDiv").style.display = "none"; 
+          document.getElementById("editContactForm").style.display = "none";                  
 				}
 				else
 				{
@@ -232,7 +237,6 @@ function searchContacts()
             
             //this is where the back ticks (`) instead of single/double (')(") qoutes come in that were mention in class. 
             //edit and delete buttons show up only when search results are called.
-            //need to write delete funtions still.
             contactList += `Name: ${contact.Name}<br /> Phone: ${contact.Phone}<br /> Email: ${contact.Email}<br />
             
             <button id="button_edit" aria-label="Edit Contact" onclick="editAndScroll('${contact.ID}', '${contact.Name}', '${contact.Phone}', '${contact.Email}')">
